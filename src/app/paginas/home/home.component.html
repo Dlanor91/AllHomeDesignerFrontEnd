@@ -1,0 +1,164 @@
+<div>
+  <section>
+    <P>Bienvenido/a {{ nombre }}</P>
+  </section>
+</div>
+
+<mat-grid-list cols="3" rowHeight="150px" class="mt-4" gutterSize="15px">
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/maquetas"
+    *ngIf="rol !== 'Superadmin' && rol !== 'Gerente'"
+    ><mat-icon class="icon">perm_media</mat-icon>&nbsp;<span
+      class="white-icon"
+      >Maquetas</span
+    ></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/filiales"
+    *ngIf="rol === 'Superadmin'"
+    ><mat-icon class="icon">work</mat-icon>&nbsp;
+    <span class="white-icon">Filiales</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/editarFilial/{{ rucFilial }}"
+    *ngIf="rol === 'Gerente'"
+    ><mat-icon class="icon">work</mat-icon>&nbsp;
+    <span class="white-icon">Filial</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/sucursales"
+    *ngIf="rol === 'Superadmin' || rol === 'Gerente'"
+    ><mat-icon class="icon">business</mat-icon>&nbsp;
+    <span class="white-icon">Sucursales</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/categorias"
+    *ngIf="rol === 'Superadmin' || rol === 'Gerente'"
+    ><mat-icon class="icon">style</mat-icon>&nbsp;
+    <span class="white-icon">Categorías</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/proveedores"
+    *ngIf="rol === 'Superadmin' || rol === 'Gerente'"
+    ><mat-icon class="icon">local_shipping</mat-icon>&nbsp;
+    <span class="white-icon">Proveedores</span></mat-grid-tile
+  >
+
+  <mat-grid-tile class="grid-tile" routerLink="/productos"
+    ><mat-icon class="icon">store</mat-icon>&nbsp;<span class="white-icon"
+      >Productos</span
+    ></mat-grid-tile
+  >
+
+  <mat-grid-tile class="grid-tile" routerLink="/listarProductos"
+    >&nbsp;<mat-icon class="icon">shop_two</mat-icon>&nbsp;
+    <span class="white-icon">Listado de Productos</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/moneda"
+    *ngIf="rol === 'Superadmin' || rol === 'Gerente'"
+    ><mat-icon class="icon">trending_up</mat-icon>&nbsp;
+    <span class="white-icon">Monedas</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/ventas"
+    *ngIf="rol !== 'Superadmin' && rol !== 'Gerente'"
+    ><mat-icon class="icon"> local_atm</mat-icon>&nbsp;
+    <span class="white-icon">Ventas</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/clientes"
+    *ngIf="rol !== 'Superadmin'"
+    ><mat-icon class="icon">face</mat-icon>&nbsp;
+    <span class="white-icon">Clientes</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/registroCliente"
+    *ngIf="rol !== 'Superadmin' && rol !== 'Gerente'"
+    ><mat-icon class="icon">person</mat-icon>&nbsp;
+    <span class="white-icon">Registrar Clientes</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/registroEmpresa"
+    *ngIf="rol !== 'Superadmin'"
+    ><mat-icon class="icon">business_center</mat-icon>&nbsp;
+    <span class="white-icon">Registrar Empresas</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/listarTrabajadores"
+    *ngIf="rol === 'Gerente'"
+    ><mat-icon class="icon">people_outline</mat-icon>&nbsp;
+    <span class="white-icon">Trabajadores</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    [routerLink]="'/registro/' + codigoSucursal"
+    *ngIf="rol === 'Gerente'"
+    ><mat-icon class="icon">supervisor_account</mat-icon>&nbsp;
+    <span class="white-icon">Registrar Trabajadores</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/registro/user"
+    *ngIf="rol === 'Superadmin'"
+    ><mat-icon class="icon">supervisor_account</mat-icon>&nbsp;
+    <span class="white-icon">Registrar Usuarios</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/usuarios"
+    *ngIf="rol === 'Superadmin'"
+    ><mat-icon class="icon">contacts</mat-icon>&nbsp;
+    <span class="white-icon">Usuarios</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/tiposUsuarios"
+    *ngIf="rol === 'Superadmin'"
+    ><mat-icon class="icon">perm_identity</mat-icon>&nbsp;
+    <span class="white-icon">Tipos de Usuarios</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/privilegio"
+    *ngIf="rol === 'Superadmin'"
+    ><mat-icon class="icon">assignment_ind</mat-icon>&nbsp;
+    <span class="white-icon">Privilegios</span></mat-grid-tile
+  >
+
+  <mat-grid-tile
+    class="grid-tile"
+    routerLink="/asignarPrivilegios"
+    *ngIf="rol === 'Superadmin'"
+    ><mat-icon class="icon">lock_open</mat-icon>&nbsp;
+    <span class="white-icon">Asignar Privilegios</span></mat-grid-tile
+  >
+</mat-grid-list>

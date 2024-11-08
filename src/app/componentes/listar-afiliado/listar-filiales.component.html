@@ -1,0 +1,64 @@
+<div>
+  <h1>Filiales</h1>
+</div>
+
+<div class="row">
+  <div class="col-6 d-flex">
+    <button mat-raised-button (click)="agregarFilial()">Añadir</button>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <mat-form-field>
+      <div>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Buscar..."
+          #input
+        />
+      </div>
+    </mat-form-field>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Ruc Column -->
+    <ng-container matColumnDef="ruc">
+      <th mat-header-cell *matHeaderCellDef>Ruc</th>
+      <td mat-cell *matCellDef="let filial">{{ filial.ruc }}</td>
+    </ng-container>
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let filial">{{ filial.nombre }}</td>
+    </ng-container>
+
+    <!-- Estado Column -->
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let filial">{{ filial.estado }}</td>
+    </ng-container>
+
+    <!-- Utiles Column -->
+    <ng-container matColumnDef="utiles">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let filial" class="text-center">
+        <mat-icon matTooltip="Detalles" (click)="detalle(filial.ruc)">info</mat-icon>&nbsp;&nbsp;
+        <mat-icon matTooltip="Eliminar" (click)="consultaElimininarFilial(filial.ruc)">delete</mat-icon>&nbsp;&nbsp;
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!--Filtro de busqueda -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No se encontraron búsquedas para "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10]"
+    aria-label="Seleccione elementos por página"
+  ></mat-paginator>
+</div>

@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@1&display=swap");
+
+h1 {
+  font-family: "DM Serif Text", serif;
+  text-align: center;
+  font-size: 50px;
+  margin-top: 30px;
+  color: #85586f;
+}
+
+p {
+  font-family: "DM Serif Text", serif;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 40px;
+}
+mat-icon{
+  font-size: 27px;
+}
+
+mat-grid-tile {
+  font-family: "DM Serif Text", serif;
+  cursor: pointer;
+  font-size: 21px;
+  background: #85586f;
+  color: #f8ede3;
+}
+
+.grid-tile:hover {
+  background-color: #f8ede3;
+  color: #85586f;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+/* Estilos para resoluciones menores a 991px */
+@media (max-width: 991px) {
+  h1 {
+    font-family: "DM Serif Text", serif;
+    text-align: center;
+    font-size: 40px;
+    margin-top: 20px;
+    color: #85586f;
+  }
+
+  p {
+    font-family: "DM Serif Text", serif;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  mat-icon{
+    font-size: 24px;
+  }
+
+  mat-grid-tile {
+    font-size: 19px;
+  }
+
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-family: "DM Serif Text", serif;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 15px;
+    color: #85586f;
+  }
+
+  p {
+    font-family: "DM Serif Text", serif;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  mat-icon{
+    font-size: 21px;
+  }
+
+  mat-grid-tile {
+    font-size: 17px;;
+  }
+
+}

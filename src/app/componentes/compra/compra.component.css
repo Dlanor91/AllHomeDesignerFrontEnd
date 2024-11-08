@@ -1,0 +1,50 @@
+.btnOrdenCompra {
+  float: right;
+  margin-top: 5px;
+}
+
+.tamannoTexto {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.totalCompras {
+  float: inline-end;
+  margin-top: 5px;
+}
+
+.btnProductos {
+  padding: 15px;
+  background-color: #85586f;
+  color: #fff;
+  border-color: #d0b8a8;
+  margin: 10px;
+}
+
+.btnProductos:hover {
+  color: #85586f;
+  background-color: #d0b8a8;
+  border-color: #85586f;
+}
+
+div {
+  font-family: "Lora", serif;
+  text-align: center;
+}
+
+.divRadio {
+  padding: 8px;
+  font-size: 16px;
+}
+
+p {
+  font-size: 15px;
+}
+
+h1 {
+  text-align: center;
+  padding: 15px 0px;
+  font-size: 40px;
+  font-family: "DM Serif Text";
+  color: #85586f;
+}

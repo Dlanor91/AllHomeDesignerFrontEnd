@@ -1,0 +1,88 @@
+<div><h1>Registrar Categoría</h1></div>
+
+<form id="fondo" name="formulario" [formGroup]="formulario" #formDir="ngForm">
+  <div [hidden]="formDir.submitted">
+    <div
+      class="cross-validation form-control"
+      [class.cross-validation-error]="
+        formulario.invalid && (formulario.touched || formulario.dirty)
+      "
+    >
+      <div
+        class="cross-validation"
+        [class.cross-validation-error]="
+          formulario.invalid && (formulario.touched || formulario.dirty)
+        "
+      >
+        <div class="row">
+          <div class="form-group">
+            <label for="nombre">Nombre *</label>
+            <input
+              name="nombre"
+              id="nombre"
+              class="form-control"
+              formControlName="nombre"
+              placeholder="Ingrese nombre *"
+              type="text"
+              pattern="[a-zA-Z .ñÑ]{3,50}"
+            />
+            <div
+              *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="nombre.errors?.['required']">
+                Debe ingresar un nombre
+              </div>
+              <div *ngIf="nombre.errors?.['minlength']">
+                Debe tener al menos 3 caracteres
+              </div>
+              <div *ngIf="nombre.errors?.['pattern']">
+                Formato incorrecto, no puede incluir números y debe tener más de
+                3 caracteres
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ruc">Descripción *</label>
+            <input
+              name="descripcion"
+              id="descripcion"
+              class="form-control"
+              formControlName="descripcion"
+              placeholder="Ingrese una descripción *"
+              type="text"
+              pattern="[a-zA-Z .ñÑ]{3,50}"
+            />
+            <div
+              *ngIf="
+                descripcion.invalid &&
+                (descripcion.dirty || descripcion.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="descripcion.errors?.['required']">
+                Debe ingresar una descripción
+              </div>
+              <div *ngIf="descripcion.errors?.['minlength']">
+                Debe tener al menos 3 caracteres
+              </div>
+              <div *ngIf="descripcion.errors?.['pattern']">
+                Formato incorrecto, no puede incluir números y debe tener más de
+                3 caracteres
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="formulario.invalid"
+      (click)="enviar()"
+    >
+      Registrar
+    </button>
+  </div>
+</form>

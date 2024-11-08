@@ -1,0 +1,82 @@
+<div>
+  <h1>Compras de: {{nombreCliente}}</h1>
+</div>
+<div class="row">
+  <div class="col-6 d-flex">
+    <button mat-raised-button (click)="atras()">Clientes</button>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <mat-form-field>
+      <div>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Buscar..."
+          #input
+        />
+      </div>
+    </mat-form-field>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Codigo Column -->
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef>Código</th>
+      <td mat-cell *matCellDef="let ventas">{{ ventas.codigo }}</td>
+    </ng-container>
+
+    <!-- Fecha Column -->
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef>Fecha Venta</th>
+      <td mat-cell *matCellDef="let ventas">
+        {{ ventas.fechaCompra | date : "dd/MM/y" }}
+      </td>
+    </ng-container>
+
+    <!-- Total Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef>Total</th>
+      <td mat-cell *matCellDef="let ventas">
+        <ng-container *ngIf="ventas.totalPesos !== 0 && ventas.totalDolares !== 0">
+          $ {{ ventas.totalPesos }} / U$S {{ ventas.totalDolares }}
+        </ng-container>
+        <ng-container *ngIf="ventas.totalPesos === 0 && ventas.totalDolares !== 0">
+          U$S {{ ventas.totalDolares }}
+        </ng-container>
+        <ng-container *ngIf="ventas.totalPesos !== 0 && ventas.totalDolares === 0">
+          $ {{ ventas.totalPesos }}
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- Utiles Column -->
+    <ng-container matColumnDef="utiles">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let ventas" class="text-center">
+        <mat-icon (click)="detalle(ventas.codigo)" matTooltip="Detalles"
+          >poll</mat-icon
+        >
+        <mat-icon
+          (click)="consultaEliminar(ventas.codigo)"
+          matTooltip="Eliminar"
+          >delete</mat-icon
+        >
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!--Filtro de busqueda -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No se encontraron búsquedas para "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10]"
+    aria-label="Seleccione elementos por página"
+  ></mat-paginator>
+</div>

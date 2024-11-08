@@ -1,0 +1,101 @@
+.toolbar-item-spacer {
+  flex: 1 1 auto;
+}
+
+.app-container {
+  height: 100%;
+  margin: 0;
+}
+.app-sidenav {
+  width: 230px;
+}
+.app-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-toolbar {
+  background-color: #85586f;
+}
+
+.mat-icon {
+  color: #85586f;
+}
+.mat-sidenav {
+  border-color: #d0b8a8;
+  border-width: 5px;
+  border-top-right-radius: 5%;
+  background-color: #f8ede3;
+}
+
+.mat-expansion-panel {
+  background-color: #f8ede3;
+}
+
+.mat-list-item:focus {
+  background-color: #d0b8a8;
+}
+.white-icon {
+  color: white;
+}
+.marron-icon {
+  color: #85586f;
+  padding-left: 10px;
+}
+span {
+  font-family: Lora;
+  color: #f8ede3;
+}
+a {
+  font-family: Lora;
+  color: #f8ede3;
+}
+
+.enlacePrincipal {
+  text-transform: capitalize;
+  text-decoration: none;
+}
+
+matBadge {
+  background-color: #85586f;
+}
+
+/* Estilos para resoluciones mayores a 992px */
+@media (min-width: 992px) {
+  a {
+    font-size: 20px;
+  }
+  span {
+    font-size: 16px;
+  }
+}
+
+/* Estilos para resoluciones menores a 991px */
+@media (max-width: 991px) {
+  a {
+    font-size: 18px;
+  }
+  span {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  a {
+    font-size: 17px;
+  }
+  span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 575px) {
+  a {
+    font-size: 16px;
+  }
+  span {
+    font-size: 13px;
+  }
+}

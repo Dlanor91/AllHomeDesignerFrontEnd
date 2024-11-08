@@ -1,0 +1,73 @@
+.form-group {
+  padding-top: 10px;
+}
+
+.alert-danger {
+  height: 40px;
+}
+
+button {
+  margin: 5px;
+}
+
+div {
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  padding: 20px;
+  font-size: 40px;
+  font-family: "DM Serif Text";
+  color: #85586f;
+}
+
+p {
+  font-family: "Lora";
+}
+
+form {
+  background-color: #85586f;
+}
+
+.form-group {
+  align-items: center;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.btn {
+  top: -100%;
+  right: 0;
+  width: 200px;
+  height: 100%;
+  background: #d0b8a8;
+  border-color: #d0b8a8;
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: 0.25s;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.btn :focus {
+  background: #d0b8a8;
+  border-color: #d0b8a8;
+}
+
+.form-group {
+  align-items: center;
+  text-align: center;
+}
+
+label {
+  font-family: "DM Serif Text";
+  padding-top: 20px;
+  padding-bottom: 5px;
+  font-size: 20px;
+}
+
+#fondo {
+  padding: 20px;
+}

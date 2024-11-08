@@ -1,0 +1,20 @@
+h1 {
+  padding: 15px 0px;
+  font-size: 40px;
+  font-family: "DM Serif Text";
+  color: #85586f;
+}
+
+.btnModelar {
+  padding: 15px;
+  background-color: #85586F;
+  color: #fff;
+  border-color: #D0B8A8;
+  margin: 10px;
+}
+
+.btnModelar:hover {
+  color: #85586F;
+  background-color: #D0B8A8;
+  border-color: #85586F;
+}

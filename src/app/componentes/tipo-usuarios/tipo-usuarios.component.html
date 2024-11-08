@@ -1,0 +1,112 @@
+<div>
+  <h1>Tipos de Usuarios</h1>
+</div>
+
+<div class="row">
+  <div class="col-6 d-flex">
+    <button mat-raised-button (click)="agregarTipo()">Añadir</button>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <mat-form-field>
+      <div>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Buscar..."
+          #input
+        />
+      </div>
+    </mat-form-field>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Rol Column -->
+    <ng-container matColumnDef="rol">
+      <th mat-header-cell *matHeaderCellDef>Rol</th>
+      <td mat-cell *matCellDef="let tipoUsuario">{{ tipoUsuario.rol }}</td>
+    </ng-container>
+
+    <!-- Descripción Rol Column -->
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+      <td mat-cell *matCellDef="let tipoUsuario">{{ tipoUsuario.descripcionRol }}</td>
+    </ng-container>
+
+    <!-- Utiles Column -->
+    <ng-container matColumnDef="utiles">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let tipoUsuario" class="text-center">
+        <mat-icon (click)="detalle(tipoUsuario.id)" matTooltip="Editar"
+          >edit</mat-icon
+        >
+        <mat-icon (click)="consultaEliminar(tipoUsuario.id)" matTooltip="Eliminar"
+          >delete</mat-icon
+        >
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!--Filtro de busqueda -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No se encontraron búsquedas para "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10]"
+    aria-label="Seleccione elementos por página"
+  ></mat-paginator>
+</div>
+
+
+<!--Detalles -->
+<div
+  *ngIf="tipoUsuario != null && detallesTipoUsuario; then detallesCategoriaMostrar"
+></div>
+
+<ng-template #detallesCategoriaMostrar>
+  <div class="mt-4 row">
+    <div class="col-9">
+      <h2>Rol: {{ tipoUsuario.rol }}</h2>
+    </div>
+    <div class="col-3 text-end">
+      <mat-icon
+        matTooltip="Confirmar Modificación"
+        (click)="modificarCategoria(tipoUsuario)"
+        >check</mat-icon
+      >
+
+      <mat-icon (click)="cancelar()" matTooltip="Cancelar Modificación"
+        >close</mat-icon
+      >
+    </div>
+  </div>
+
+  <section>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Rol:</th>
+          <th scope="col">Descripción:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td contenteditable="true">
+            <input type="text" [(ngModel)]="tipoUsuario.rol" />
+          </td>
+          <td contenteditable="true">
+            <textarea
+              type="text"
+              [(ngModel)]="tipoUsuario.descripcionRol"
+            ></textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ng-template>

@@ -1,0 +1,211 @@
+<h1>Productos</h1>
+<flotanteModelo></flotanteModelo>
+
+<div class="row">
+  <div class="col-12 col-sm-4 align-self-center">
+    <div class="d-flex justify-content-center justify-content-sm-start">
+      <label for="selectCategoria">Categoría: </label>&nbsp;
+      <select
+        name="filtrarCategoria"
+        [(ngModel)]="categoriaNombre"
+        (change)="filtrarProductos()"
+      >
+        <option value="">Categoría</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria.nombre">
+          {{ categoria.nombre }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="col-12 justify-content-center col-sm-4">
+    <button
+      *ngIf="rol !== 'Superadmin' && rol !== 'Gerente'"
+      class="btnCompra"
+      (click)="irCompras()"
+    >
+      Reservas
+    </button>
+  </div>
+
+  <div class="col-12 col-sm-4 align-self-sm-center">
+    <div class="d-flex justify-content-center justify-content-sm-end">
+      <label for="buscarProducto">Nombre: </label> &nbsp;
+      <input
+        type="text"
+        [(ngModel)]="buscarProducto"
+        (input)="filtrarProductos()"
+        placeholder="Filtrar productos"
+      />
+    </div>
+  </div>
+</div>
+<hr />
+
+<div *ngIf="encontrado; then siEncontrado; else noEncontrado"></div>
+
+<ng-template #siEncontrado>
+  <div class="grid-container">
+    <div class="grid-item" *ngFor="let producto of productosFiltrados">
+      <div (click)="detalle(producto.codigo, producto.rucProveedor)" class="enlace"><img src="{{ producto.imagen }}" alt="imagen" /></div>
+      <h3>{{ producto.nombre }}</h3>
+      <p>Disponibilidad: {{ producto.disponibilidad }}</p>
+      <div *ngIf="producto.rendimiento > 0">
+        <p class="price">
+          Precio: {{ producto.precio.simbolo }}
+          {{ producto.precio.precioFinal }} / m2
+        </p>
+        <button
+          ngbPopover="{{
+            producto.descripcion +
+              '. Presentación: ' +
+              producto.presentacion +
+              ' Rendimiento: ' +
+              producto.rendimiento +
+              ' m2'
+          }}"
+        >
+          <mat-icon>assignment</mat-icon>
+        </button>
+        &nbsp;
+        <button
+          *ngIf="rol !== 'Superadmin' && rol !== 'Gerente'"
+          class="btnAddCarrito"
+          (click)="onClickComprar(producto)"
+        >
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </div>
+
+      <div *ngIf="producto.rendimiento < 1">
+        <p class="price">
+          Precio: {{ producto.precio.simbolo }}
+          {{ producto.precio.precioFinal }}
+        </p>
+        <button ngbPopover="{{ producto.descripcion }}">
+          <mat-icon>assignment</mat-icon>
+        </button>
+        &nbsp;
+        <button class="btnAddCarrito" (click)="onClickComprar(producto)">
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noEncontrado>
+  <div class="grid-container">
+    <div class="grid-item" *ngFor="let producto of productos">
+      <div (click)="detalle(producto.codigo, producto.rucProveedor)" class="enlace"><img src="{{ producto.imagen }}" alt="Imagen de {{ producto.nombre }}" /></div>
+      <h3>{{ producto.nombre }}</h3>
+      <p>Categoría: {{ producto.nombreCategoria }}</p>
+      <p>Disponibilidad: {{ producto.disponibilidad }}</p>
+      <div *ngIf="producto.rendimiento > 0">
+        <p class="price">
+          Precio: {{ producto.precio.simbolo }}
+          {{ producto.precio.precioFinal }} / m2
+        </p>
+        <button
+          ngbPopover="{{
+            producto.descripcion +
+              '. Presentación: ' +
+              producto.presentacion +
+              ' Rendimiento: ' +
+              producto.rendimiento +
+              ' m2'
+          }}"
+          matTooltip="Detalles"
+        >
+          <mat-icon>assignment</mat-icon>
+        </button>
+        &nbsp;
+        <button
+          *ngIf="rol !== 'Superadmin' && rol !== 'Gerente'"
+          class="btnAddCarrito"
+          (click)="onClickComprar(producto)"
+          matTooltip="Agregar al Carrito"
+        >
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </div>
+
+      <div *ngIf="producto.rendimiento < 1">
+        <p class="price">
+          Precio: {{ producto.precio.simbolo }}
+          {{ producto.precio.precioFinal }}
+        </p>
+        <button ngbPopover="{{ producto.descripcion }}" matTooltip="Detalles">
+          <mat-icon>assignment</mat-icon>
+        </button>
+        &nbsp;
+        <button
+          *ngIf="rol !== 'Superadmin' && rol !== 'Gerente'"
+          class="btnAddCarrito"
+          (click)="onClickComprar(producto)"
+          matTooltip="Agregar al Carrito"
+        >
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<hr />
+
+<div *ngIf="carritoCompras.length > 0">
+  <h2>Listado de Reservas</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Código</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Total</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let compra of carritoCompras; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ compra.producto.codigo }}</td>
+        <td>
+          <img
+            src="{{ compra.producto.imagen }}"
+            alt="Imagen de {{ compra.producto.nombre }}"
+            width="30px"
+            height="30px"
+          />
+        </td>
+        <td>{{ compra.producto.nombre }}</td>
+        <td class="price">
+          <div *ngIf="compra.producto.rendimiento > 0">
+            {{ compra.producto.precio.simbolo }}
+            {{ compra.producto.precio.precioFinal }} / m2
+          </div>
+          <div *ngIf="compra.producto.rendimiento < 1">
+            $ {{ compra.producto.precio.precioFinal }}
+          </div>
+        </td>
+        <td>{{ compra.cantidad }}</td>
+        <td class="price">
+          <div>
+            {{ calcularPrecioFinalCompra(compra) }}
+          </div>
+        </td>
+        <td>
+          <button
+            (click)="eliminarCompra(compra)"
+            matTooltip="Quitar del Carrito"
+          >
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

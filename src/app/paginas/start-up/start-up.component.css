@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Lora&display=swap');
+
+@font-face {
+    font-family: 'DM Serif Text', serif;
+    font-family: 'Lora', serif;
+    src: url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=Lora&display=swap');
+}
+
+body {
+  position: relative;
+}
+
+p {
+  line-height: 1.75;
+}
+
+.btn-social {
+  height: 2.5rem;
+  width: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 100%;
+}
+
+section.fotoInicio {
+  padding-bottom: 10px;
+  width: 100%;
+  text-align: center;
+  color: black;
+  background-size: cover;
+
+  position: absolute;
+  color: #85586F;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+img{
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+  position: relative;
+}
+
+section.fotoInicio .fotoInicio-subheading {
+  font-family: 'DM Serif Text', serif;
+}
+
+section.fotoInicio .fotoInicio-heading {
+  font-family: 'Lora', serif;
+}
+
+@media (min-width: 992px) {
+
+  section.fotoInicio .fotoInicio-logo {
+    background-image: url("src/assets/logo2.png");
+    width: 200px;
+    height: 200px;
+    background-position: center center;
+    background-size: cover;
+    text-align: center;
+    display: inline-flex;
+  }
+
+  section.fotoInicio {
+    padding-top: 18rem;
+    padding-bottom: 12.5rem;
+  }
+  section.fotoInicio .fotoInicio-subheading {
+    font-size: 80px;
+    font-style: italic;
+    line-height: 2.25rem;
+    margin-bottom: 20px;
+  }
+  section.fotoInicio .fotoInicio-heading {
+    font-size: 20px;
+    font-weight: 40px;
+    line-height: 4.5rem;
+    margin-bottom: 20px;
+  }
+  .btn-primary {
+    padding: 25px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 768px) {
+
+  section.fotoInicio .fotoInicio-logo {
+    background-image: url("src/assets/logo2.png");
+    width: 180px;
+    height: 180px;
+    background-position: center center;
+    background-size: cover;
+    text-align: center;
+    display: inline-flex;
+  }
+
+  section.fotoInicio {
+    padding-top: 18rem;
+    padding-bottom: 6rem;
+  }
+  section.fotoInicio .fotoInicio-subheading {
+    font-size: 60px;
+    font-style: italic;
+    line-height: 2.25rem;
+    margin-bottom: 20px;
+  }
+  section.fotoInicio .fotoInicio-heading {
+    font-size: 18px;
+    font-weight: 20px;
+    line-height: 4.5rem;
+    margin-bottom: 15px;
+  }
+
+  .btn-primary {
+    padding: 20px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+
+  section.fotoInicio .fotoInicio-logo {
+    background-image: url("src/assets/logo2.png");
+    width: 110px;
+    height: 110px;
+    background-position: center center;
+    background-size: cover;
+    text-align: center;
+    display: inline-flex;
+  }
+
+  section.fotoInicio {
+    padding-top: 8.5rem;
+    padding-bottom: 5px;
+  }
+
+  section.fotoInicio .fotoInicio-subheading {
+    font-size: 35px;
+    font-style: italic;
+    line-height: 2.25rem;
+    margin-bottom: 2px;
+  }
+  section.fotoInicio .fotoInicio-heading {
+    font-size: 16px;
+    font-weight: 15px;
+    line-height: 4.5rem;
+    margin-bottom: 2px;
+  }
+
+  .btn-primary {
+    padding: 18px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 575px) {
+
+  section.fotoInicio .fotoInicio-logo {
+    background-image: url("src/assets/logo2.png");
+    width: 80px;
+    height: 80px;
+    background-position: center center;
+    background-size: cover;
+    text-align: center;
+    display: inline-flex;
+  }
+
+  section.fotoInicio {
+    padding-top: 6.5rem;
+    padding-bottom: 15px;
+  }
+
+  section.fotoInicio .fotoInicio-subheading {
+    font-size: 28px;
+    font-style: italic;
+    line-height: 2rem;
+    margin-bottom: 2px;
+  }
+  section.fotoInicio .fotoInicio-heading {
+    font-size: 11px;
+    font-weight: 5px;
+    line-height: 2.5rem;
+    margin-bottom: 2px;
+  }
+
+  .btn-primary {
+    padding: 13px;
+    font-size: 10px;
+  }
+}
+
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #85586F;
+  --bs-btn-border-color: #D0B8A8;
+  --bs-btn-hover-color: #85586F;
+  --bs-btn-hover-bg: #D0B8A8;
+  --bs-btn-hover-border-color: #85586F;
+}
+
+.btn :focus {
+  background: #D0B8A8;
+  border-color: #D0B8A8;
+}
+
+.page-section{
+  padding: 20px;
+  margin-bottom: 20px;
+}
+

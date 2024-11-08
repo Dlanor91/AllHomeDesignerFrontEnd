@@ -1,0 +1,54 @@
+<div>
+  <h1>Carga Masiva de Datos</h1>
+</div>
+
+<div>
+  <label for="text"><strong>Cargar Personas:</strong> </label> &nbsp;&nbsp;
+  <input
+    type="file"
+    id="fileInput"
+    (change)="personasSeleccionadas($event)"
+    multiple
+    accept=".txt, .csv"
+  />
+  <button>Enviar</button>
+</div>
+<hr />
+<div>
+  <label for="text"><strong>Cargar Empresas:</strong> </label> &nbsp;&nbsp;
+  <input
+    type="file"
+    id="fileInput"
+    (change)="empresasSeleccionadas($event)"
+    multiple
+    accept=".txt, .csv"
+  />
+  <button>Enviar</button>
+</div>
+<hr />
+<div>
+  <label for="text"><strong>Cargar Productos:</strong> </label> &nbsp;&nbsp;
+  <input
+    type="file"
+    id="fileInput"
+    (change)="productosSeleccionados($event)"
+    multiple
+    accept=".txt, .csv"
+  />
+  <button>Enviar</button>
+</div>
+<hr />
+<div>
+  <form enctype="multipart/form-data">
+    <label for="text"><strong>Cargar Fotos de Productos:</strong> </label>
+    &nbsp;&nbsp;
+    <input
+      type="file"
+      id="fileInput"
+      (change)="fotosSeleccionadas($event)"
+      multiple
+      accept=".png, .jpg"
+    />
+    <button >Enviar</button>
+  </form>
+</div>

@@ -1,0 +1,53 @@
+<div><h1>Maquetas</h1></div>
+<flotanteModelo></flotanteModelo>
+
+
+<div>
+    <!-- Cargo los ambientes -->
+
+    <label for="">Ambientes</label> &nbsp;
+    <select name="ambientes" id="ambientes" [(ngModel)] = "tipoRender" (change)="filtroOpciones(tipoRender)">
+        <option *ngFor='let item of opcionesAmbientes' [value]='item.codigo'> {{item.nombre}} </option>
+    </select> <br><br>
+
+    <!-- Cargo las opciones de los ambientes -->
+
+    <label for="">Opciones</label> &nbsp;&nbsp;&nbsp;
+    <select name="caracteristicasRender" id="caracteristicas" [(ngModel)]="caracteristicaRender" (change)="filtroDetallesRender(caracteristicaRender)" (ngModelChange)="reseteoAmbiente()">
+        <option selected disabled hidden value="">-- Selecciona un item --</option>
+        <option *ngFor="let op of opcionesFiltradas" [value]="op.codigo"> {{ op.nombre }} </option>
+    </select>
+    <br><br>
+</div>
+
+<ng-container *ngIf="tipoRender == 'habitacion' then TempHabitacion; else elseTemplate"></ng-container>
+
+<!-- Cargo las opciones si el tipo seleccionado es habitacion -->
+
+<ng-template #TempHabitacion>
+    <label for="">Color</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select name="colorRender" id="color" [(ngModel)]="colorRender" (ngModelChange)="reseteoColor()">
+        <option selected disabled hidden value="">-- Selecciona un item --</option>
+        <option *ngFor="let color of detalleFiltrado" [value]="color.codigo"> {{ color.nombre }} </option>
+    </select> <br><br><br>
+</ng-template>
+
+<ng-template #elseTemplate>
+    <br><br><br>    
+</ng-template>
+
+<button class="btnModelar" (click)="cargarModelo()">Modelar</button>
+
+
+<div *ngIf="colorSeleccionado; then modeladoConColor"></div>
+<div *ngIf="tipoRender != 'habitacion' && caracteristicaSeleccionada && tipoSeleccionado; then modeladoSinColor"></div>
+
+
+<ng-template #modeladoConColor>
+    <modelado3D name="modelado" [modelTypeFilePath]="tipoRender" [modelNameFile]="caracteristicaRender" [modelNameType]="colorRender"></modelado3D>
+</ng-template>
+
+<ng-template #modeladoSinColor>
+    <modelado3D name="modelado" [modelTypeFilePath]="tipoRender" [modelNameFile]="caracteristicaRender" [modelNameType]="''"></modelado3D>mod
+</ng-template>
+

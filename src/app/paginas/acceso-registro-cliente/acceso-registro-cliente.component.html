@@ -1,0 +1,263 @@
+<h1>Registro de Cliente</h1>
+
+<div>
+  <form id="fondo" name="formulario" [formGroup]="formulario" #formDir="ngForm">
+    <div [hidden]="formDir.submitted">
+      <div
+        class="cross-validation form-control"
+        [class.cross-validation-error]="
+          formulario.invalid && (formulario.touched || formulario.dirty)
+        "
+      >
+        <div class="row">
+          <div class="form-group col-6">
+            <label class="col-form-label">Documento *</label>
+
+            <input
+              type="text"
+              class="form-control"
+              formControlName="documento"
+              id="documento"
+              placeholder="Ingrese documento *"
+              pattern="[0-9]{7,8}"
+            />
+
+            <div
+              *ngIf="
+                documento.invalid && (documento.dirty || documento.touched)
+              "
+              class="alert alert-danger"
+            >
+              <p *ngIf="documento.errors?.['required']">
+                Debe ingresar un documento
+              </p>
+              <p *ngIf="documento.errors?.['pattern']">
+                Debe ser numerico de 7 u 8 dígitos
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label class="col-form-label">E-mail *</label>
+            <div>
+              <input
+                type="email"
+                class="form-control"
+                formControlName="email"
+                id="inputEmail"
+                placeholder="Ingrese e-mail *"
+              />
+            </div>
+            <div
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="alert alert-danger"
+            >
+              <p *ngIf="email.errors?.['required']">Debe ingresar un e-mail</p>
+              <p *ngIf="email.errors?.['pattern']">
+                El e-mail debe tener un formato válido
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label class="col-form-label">Nombre *</label>
+            <div>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="nombre"
+                id="nombre"
+                placeholder="Ingrese nombre *"
+                pattern="[a-zA-Z ]{3,30}"
+              />
+            </div>
+            <div
+              *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+              class="alert alert-danger"
+            >
+              <p *ngIf="nombre.errors?.['required']">Debe ingresar un nombre</p>
+              <p *ngIf="nombre.errors?.['pattern']">
+                Formato incorrecto, debe tener al menos 3 letras
+              </p>
+            </div>
+          </div>
+          <div class="form-group col-6">
+            <label class="col-form-label">Apellido *</label>
+            <div>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="apellido"
+                id="apellido"
+                placeholder="Ingrese apellido *"
+                pattern="[a-zA-Z ]{3,30}"
+              />
+            </div>
+            <div
+              *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)"
+              class="alert alert-danger"
+            >
+              <p *ngIf="apellido.errors?.['required']">
+                Debe ingresar un apellido
+              </p>
+              <p *ngIf="apellido.errors?.['pattern']">
+                Formato incorrecto, debe tener al menos 3 letras
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <div class="form-group" id="divTelefono">
+              <label class="col-form-label">Teléfono Principal</label>
+              <input
+                type="string"
+                class="form-control"
+                formControlName="numero"
+                id="telefono"
+                placeholder="Ingrese número de contacto"
+              />
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <div class="form-group" id="divTelefono2">
+              <label class="col-form-label">Teléfono Secundario</label>
+              <input
+                type="string"
+                class="form-control"
+                formControlName="numero2"
+                id="telefono"
+                placeholder="Ingrese número de contacto secundario"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label class="col-form-label">Dirección</label>
+            <div>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="calle"
+                id="inputDireccion"
+                placeholder="Ingrese la dirección"
+              />
+            </div>
+          </div>
+
+          <div class="form-group col-6" id="numPuerta">
+            <label class="col-form-label">Número de puerta</label>
+            <div class="">
+              <input
+                type="number"
+                class="form-control"
+                formControlName="nroPuerta"
+                id="numeroPuerta"
+                placeholder="Número de puerta"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6" id="datosComplementarios">
+            <label class="col-form-label">Datos complementarios</label>
+            <div>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="datos"
+                id="datosComplementarios"
+                placeholder="Apartamento, estudio, entrada por garage"
+              />
+            </div>
+          </div>
+          <div class="form-group col-6" id="datosComplementarios">
+            <label class="col-form-label">Complemento</label>
+            <div>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="complemento"
+                id="/"
+                placeholder="Complemento"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group row">
+            <label class="col-form-label">Departamento</label>
+            <p-dropdown
+              [options]="departamentos"
+              [(ngModel)]="seleccionDepartamento"
+              optionLabel="nombre"
+              [filter]="true"
+              filterBy="nombre"
+              [showClear]="true"
+              placeholder="Seleccione departamento"
+              (onChange)="onSelectDepto($event.value)"
+            >
+              <ng-template pTemplate="seleccionDepartamento">
+                <div
+                  class="departamentos-item departamento-item-value"
+                  *ngIf="seleccionDepartamento.id"
+                >
+                  <div>{{ seleccionDepartamento.nombre }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-departamentos pTemplate="item">
+                <div class="departamentos-item">
+                  <div>{{ departamentos.nombre }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-form-label">Localidades</label>
+            <p-dropdown
+              [options]="localidades"
+              [(ngModel)]="seleccionLocalidad"
+              formControlName="idLocalidad"
+              optionLabel="nombre"
+              [filter]="true"
+              filterBy="nombre"
+              [showClear]="true"
+              placeholder="Seleccione localidad"
+            >
+              <ng-template pTemplate="seleccionLocalidad">
+                <div
+                  class="localidades-item localidad-item-value"
+                  *ngIf="seleccionLocalidad.id"
+                >
+                  <div>{{ seleccionLocalidad.nombre }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-localidades pTemplate="item">
+                <div class="departamentos-item">
+                  <div>{{ localidades.nombre }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        [disabled]="formulario.invalid"
+        (click)="enviar()"
+      >
+        Registrarse
+      </button>
+    </div>
+  </form>
+</div>

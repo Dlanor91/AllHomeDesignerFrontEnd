@@ -1,0 +1,75 @@
+<h1>Registrar Privilegio</h1>
+
+<form id="fondo" name="formulario" [formGroup]="formulario" #formDir="ngForm">
+  <div [hidden]="formDir.submitted">
+    <div
+      class="cross-validation form-control"
+      [class.cross-validation-error]="
+        formulario.invalid && (formulario.touched || formulario.dirty)
+      "
+    >
+      <div
+        class="cross-validation"
+        [class.cross-validation-error]="
+          formulario.invalid && (formulario.touched || formulario.dirty)
+        "
+      >
+        <div class="row">
+          <div class="form-group">
+            <label for="nombre">Tipo *</label>
+            <input
+              name="tipo"
+              class="form-control"
+              formControlName="tipo"
+              placeholder="Ingrese tipo *"
+              type="text"
+            />
+            <div
+              *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="tipo.errors?.['required']">
+                Debe ingresar un tipo
+              </div>
+              <div *ngIf="tipo.errors?.['minlength']">
+                Debe tener al menos 3 caracteres
+              </div>
+              <div *ngIf="tipo.errors?.['pattern']">Formato incorrecto</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ruc">Descripción *</label>
+            <input
+              name="descripcion"
+              class="form-control"
+              formControlName="descripcion"
+              placeholder="Ingrese una descripción *"
+              type="text"
+            />
+            <div
+              *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="descripcion.errors?.['required']">
+                Debe ingresar una descripción
+              </div>
+              <div *ngIf="descripcion.errors?.['pattern']">
+                Formato incorrecto
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="formulario.invalid"
+      (click)="enviar()"
+    >
+      Registrar
+    </button>
+  </div>
+</form>

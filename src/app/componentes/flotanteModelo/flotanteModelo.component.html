@@ -1,0 +1,11 @@
+<div class="content floating-button">
+  <div class="text">
+    <button *ngIf="rol !== 'Superadmin' && rol !== 'Gerente'" class="btn" (click)="irModelo()" matTooltip="Maquetas">
+      <mat-icon>perm_media</mat-icon>
+    </button>
+    &nbsp;
+    <button class="btn" (click)="irAProductos()" matTooltip="Productos">
+      <mat-icon>store</mat-icon>
+    </button>
+  </div>
+</div>

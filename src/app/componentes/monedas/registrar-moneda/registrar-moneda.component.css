@@ -1,0 +1,65 @@
+.alert-danger {
+    height: 40px;
+}
+
+button {
+    margin: 5px;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    font-size: 40px;
+    font-family: 'DM Serif Text';
+    color: #85586F;
+}
+
+div {
+  align-items: center;
+  text-align: center;
+}
+
+p {
+    font-family: 'Lora';
+}
+
+form {
+    background-color: #85586F;
+}
+
+.btn {
+    top: -100%;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background: #D0B8A8;
+    border-color: #D0B8A8;
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+
+}
+
+.btn :focus {
+    background: #D0B8A8;
+    border-color: #D0B8A8;
+}
+
+.form-group {
+    align-items: center;
+    text-align: center;
+}
+
+
+label {
+    font-family: 'DM Serif Text';
+    padding-top: 20px;
+    padding-bottom: 5px;
+    font-size: 20px;
+}
+
+#fondo{
+    padding: 20px;
+}

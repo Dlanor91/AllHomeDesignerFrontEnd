@@ -1,0 +1,37 @@
+<div>
+  <h1>Detalles de Venta: {{ id }}</h1>
+</div>
+<div>
+  <button mat-raised-button (click)="atras()">Ventas</button>
+</div>
+<div class="row">
+  <div
+    *ngFor="let detalleVenta of detallesVentas"
+    class="col-12 col-md-6 col-lg-4"
+  >
+    <mat-card class="mt-2">
+      <mat-card-title-group>
+        <mat-card-subtitle
+          >Proveedor: {{ detalleVenta.nombreFilial }}</mat-card-subtitle
+        >
+        <mat-card-subtitle
+          >Total: {{ detalleVenta.simboloMoneda }}
+          {{ detalleVenta.precioFinal }}</mat-card-subtitle
+        >
+        <img mat-card-lg-image src="{{ detalleVenta.imagenProducto }}" />
+      </mat-card-title-group>
+      <mat-card-content>
+        <p>Producto: {{ detalleVenta.nombreProducto }}</p>
+        <p>
+          Precio: {{ detalleVenta.simboloMoneda }}
+          {{ detalleVenta.precioProducto }}
+        </p>
+        <p *ngIf="detalleVenta.rendimientoProducto > 0">
+          Rendimiento: {{ detalleVenta.rendimientoProducto }} / m2
+        </p>
+        <p>Cantidad: {{ detalleVenta.cantidad }}</p>
+        <p *ngIf="detalleVenta.rendimientoProducto == null || detalleVenta.rendimientoProducto == 0"><br /></p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

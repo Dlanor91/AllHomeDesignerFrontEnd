@@ -1,0 +1,165 @@
+<div>
+  <h1>Reservas</h1>
+</div>
+<flotanteModelo></flotanteModelo>
+<div>
+  <button class="btnProductos" (click)="irProductos()">Ir a Productos</button>
+</div>
+<hr />
+<div *ngIf="carritoCompras.length == 0; then sinCompras; else conCompras"></div>
+
+<ng-template #sinCompras>
+  <div>
+    <h3>No hay reservas hasta el momento.</h3>
+  </div>
+</ng-template>
+
+<ng-template #conCompras>
+  <div class="grid-container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Código</th>
+          <th scope="col">Producto</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Total</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let compra of carritoCompras; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ compra.producto.codigo }}</td>
+          <td>
+            <img
+              src="{{ compra.producto.imagen }}"
+              alt="Imagen de {{ compra.producto.nombre }}"
+              width="30px"
+              height="30px"
+            />
+          </td>
+          <td>{{ compra.producto.nombre }}</td>
+          <td class="price">
+            <div *ngIf="compra.producto.rendimiento > 0">
+              {{ compra.producto.precio.simbolo }}
+              {{ compra.producto.precio.precioFinal }} / m2
+            </div>
+            <div *ngIf="compra.producto.rendimiento < 1">
+              {{ compra.producto.precio.simbolo }}
+              {{ compra.producto.precio.precioFinal }}
+            </div>
+          </td>
+          <td>{{ compra.cantidad }}</td>
+          <td class="price">
+            <div>
+              {{ calcularPrecioFinalCompra(compra) }}
+            </div>
+          </td>
+          <td>
+            <button
+              (click)="eliminarCompra(compra)"
+              matTooltip="Quitar del Carrito"
+            >
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="totalCompras">
+      <label for="totalCompras" *ngIf="totalPesos > 0"
+        ><strong
+          >Total: $ {{ totalPesos }} / U$S {{ totalDolares }}</strong
+        ></label
+      >
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-2 form-check form-check-inline">
+        <label class="divRadio form-check-label">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="cliente"
+            value="Persona"
+            [(ngModel)]="tipoCliente"
+            matTooltip="Seleccionar"
+          />
+          Persona
+        </label>
+      </div>
+
+      <div class="col-2 form-check form-check-inline">
+        <label class="divRadio form-check-label">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="cliente"
+            value="Empresa"
+            [(ngModel)]="tipoCliente"
+            matTooltip="Seleccionar"
+          />
+          Empresa
+        </label>
+      </div>
+
+      <div class="text-end col-7" *ngIf="!consumidorEncontrado">
+        <label for="registro" class="tamannoTexto">Cliente nuevo?</label> &nbsp;
+        <mat-checkbox
+          [(ngModel)]="deseaRegistrarse"
+          (change)="enviarARegistro(tipoCliente)"
+          matTooltip="Confirmar"
+        ></mat-checkbox
+        ><br />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <br />
+    <div *ngIf="tipoCliente && !deseaRegistrarse">
+      <label for="documento">Ingrese el documento/RUC: </label>&nbsp;
+      <input
+        type="text"
+        id="documento"
+        name="documento"
+        [(ngModel)]="documento"
+        (keyup.enter)="encontrarCliente(documento, tipoCliente)"
+      />
+      &nbsp;
+      <button
+        (click)="encontrarCliente(documento, tipoCliente)"
+        matTooltip="Buscar Cliente"
+      >
+        <mat-icon>check_circle_outline</mat-icon>
+      </button>
+    </div>
+
+    <!-- <hr> -->
+    <div *ngIf="consumidorEncontrado" class="btnOrdenCompra">
+      <button
+        (click)="finalizarCompra(tipoCliente)"
+        matTooltip="Finalizar Compra"
+      >
+        <mat-icon>check</mat-icon>
+      </button>
+      &nbsp;
+      <button
+        (click)="crearPresupuesto(tipoCliente)"
+        matTooltip="Crear Presupuesto"
+      >
+        <mat-icon>folder_special</mat-icon>
+      </button>
+      &nbsp;
+      <button (click)="cancelarCompra()" matTooltip="Cancelar Compra">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-template>

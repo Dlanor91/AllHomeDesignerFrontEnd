@@ -1,0 +1,40 @@
+mat-card{
+  width: 100%;
+  font-family: "Arial";
+}
+
+mat-card-subtitle{
+  font-size: 20px;
+}
+
+mat-card-content, p{
+  font-family: "Arial";
+  font-size: 16px;
+}
+
+mat-icon {
+  cursor: pointer;
+  font-size: 30px;
+  margin: 0 6px 6px 0;
+}
+
+/* Estilos para resoluciones menores a 991px */
+@media (max-width: 991px) {
+  td,
+  th,
+  button,
+  input {
+    font-size: 13px;
+  }
+
+  td,
+  th {
+    width: 20%;
+  }
+
+  input {
+    width: 150px;
+    height: 20px;
+  }
+
+}

@@ -1,0 +1,179 @@
+<section class="page-section mt-5" id="contact">
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase" id="contactar">Contáctenos</h2>
+    </div>
+    <form
+      id="contactForm"
+      name="formulario"
+      [formGroup]="formulario"
+      #formDir="ngForm"
+    >
+      <div [hidden]="formDir.submitted">
+        <div
+          class="cross-validation form-control"
+          [class.cross-validation-error]="
+            formulario.invalid && (formulario.touched || formulario.dirty)
+          "
+        >
+          <div
+            class="cross-validation"
+            [class.cross-validation-error]="
+              formulario.invalid && (formulario.touched || formulario.dirty)
+            "
+          >
+            <div class="row align-items-stretch mb-4">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    id="nombre"
+                    formControlName="nombre"
+                    type="text"
+                    placeholder="Nombre *"
+                    data-sb-validations="required"
+                    pattern="[a-zA-Z ]{2,30}"
+                  />
+                  <div
+                    *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="nombre.errors?.['required']">
+                      Debe ingresar un nombre
+                    </div>
+                    <div *ngIf="nombre.errors?.['minlength']">
+                      Debe tener al menos 3 caracteres
+                    </div>
+                    <div *ngIf="nombre.errors?.['pattern']">
+                      Formato incorrecto
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input
+                    class="form-control"
+                    id="email"
+                    formControlName="email"
+                    type="email"
+                    placeholder="E-mail *"
+                    data-sb-validations="required,email"
+                  />
+                  <div
+                    *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="email.errors?.['required']">
+                      Debe ingresar un e-mail
+                    </div>
+                    <div *ngIf="email.errors?.['pattern']">
+                      El e-mail debe tener un formato valido
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-md-0">
+                  <input
+                    class="form-control"
+                    id="telefono"
+                    formControlName="telefono"
+                    type="tel"
+                    placeholder="Teléfono *"
+                    data-sb-validations="required"
+                  />
+
+                  <div
+                    *ngIf="
+                      telefono.invalid && (telefono.dirty || telefono.touched)
+                    "
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="telefono.errors?.['required']">
+                      Debe ingresar un teléfono
+                    </div>
+                    <div *ngIf="telefono.errors?.['pattern']">
+                      El teléfono debe ser formato numérico
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group form-group-textarea mb-md-0">
+                  <textarea
+                    class="form-control"
+                    formControlName="mensaje"
+                    id="mensaje"
+                    placeholder="Mensaje *"
+                    data-sb-validations="required"
+                  ></textarea>
+
+                  <div
+                    *ngIf="
+                      mensaje.invalid && (mensaje.dirty || mensaje.touched)
+                    "
+                    class="alert alert-danger"
+                    id="txtArea"
+                  >
+                    <div *ngIf="mensaje.errors?.['required']">
+                      Debe ingresar un mensaje
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-none" id="btnMensaje">
+              <div class="text-center text-white mb-3">
+                <div class="fw-bolder">Form submission successful!</div>
+                <br />
+                <a href="mail"></a>
+              </div>
+            </div>
+            <div class="text-center">
+              <button
+                type="button"
+                class="btn btn-primary"
+                [disabled]="formulario.invalid"
+                (click)="enviar()"
+              >
+                Enviar Mensaje
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="containerTabla">
+  <table >
+    <thead>
+      <th>Alejandro Velázquez</th>
+      <th>Ronald Lima</th>
+      <th>Adrián Rodríguez</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <mat-icon class="centrar-verticalmente"> contact_phone</mat-icon>  +61 474098673
+        </td>
+        <td>
+          <mat-icon class="centrar-verticalmente"> contact_phone</mat-icon>  +598 93512847
+        </td>
+        <td>
+          <mat-icon class="centrar-verticalmente"> contact_phone</mat-icon>  +598 94295663
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-icon class="centrar-verticalmente"> contact_mail</mat-icon>  alevelazquez9434@gmail.com
+        </td>
+        <td>
+          <mat-icon class="centrar-verticalmente"> contact_mail</mat-icon>  rl8506@gmail.com
+        </td>
+        <td>
+          <mat-icon class="centrar-verticalmente"> contact_mail</mat-icon>  adrianrodriguezalvez@gmail.com
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

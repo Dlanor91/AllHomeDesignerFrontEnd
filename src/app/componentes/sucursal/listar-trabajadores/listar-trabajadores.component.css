@@ -1,0 +1,88 @@
+h1 {
+  padding: 15px 0px;
+  font-size: 40px;
+  font-family: "DM Serif Text";
+  color: #85586f;
+}
+
+table,
+mat-paginator {
+  width: 100%;
+}
+
+button {
+  margin: 0 6px 6px 0;
+}
+
+mat-icon {
+  cursor: pointer;
+  font-size: 28px;
+  margin: 0 6px 6px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
+}
+
+@media (min-width: 992px) {
+  td,
+  th,
+  button,
+  input {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 991px) {
+  h1 {
+    font-size: 35px;
+  }
+
+  input,
+  button,
+  th,
+  td {
+    font-size: 13px;
+  }
+
+  mat-icon {
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0 3px 3px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 30px;
+  }
+  input,
+  button,
+  th,
+  td {
+    font-size: 11px;
+  }
+  mat-icon {
+    cursor: pointer;
+    font-size: 21px;
+    margin: 2px 2px 2px 0;
+  }
+}
+
+@media (max-width: 575px) {
+  h1 {
+    font-size: 25px;
+  }
+  input,
+  button,
+  th,
+  td {
+    font-size: 9px;
+  }
+  mat-icon {
+    cursor: pointer;
+    font-size: 17px;
+    margin: 2px 1px 2px 0;
+  }
+}

@@ -1,0 +1,19 @@
+table,
+mat-paginator {
+  width: 100%;
+}
+
+button {
+  margin: 0 6px 6px 0;
+}
+
+mat-icon {
+  cursor: pointer;
+  font-size: 30px;
+  margin: 0 6px 6px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
+}

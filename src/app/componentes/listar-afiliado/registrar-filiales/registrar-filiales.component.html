@@ -1,0 +1,109 @@
+<div><h1>Registrar Filial</h1></div>
+
+<form id="fondo" name="formulario" [formGroup]="formulario" #formDir="ngForm">
+  <div [hidden]="formDir.submitted">
+    <div
+      class="cross-validation form-control"
+      [class.cross-validation-error]="
+        formulario.invalid && (formulario.touched || formulario.dirty)
+      "
+    >
+      <div
+        class="cross-validation"
+        [class.cross-validation-error]="
+          formulario.invalid && (formulario.touched || formulario.dirty)
+        "
+      >
+        <div class="row">
+          <div class="form-group">
+            <label for="nombre">Nombre *</label>
+            <input
+              name="nombre"
+              class="form-control"
+              formControlName="nombre"
+              placeholder="Ingrese nombre *"
+              type="text"
+              pattern="[a-zA-Z .ñÑ]{3,50}"
+            />
+            <div
+              *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="nombre.errors?.['required']">
+                Debe ingresar un nombre
+              </div>
+              <div *ngIf="nombre.errors?.['minlength']">
+                Debe tener al menos 3 caracteres
+              </div>
+              <div *ngIf="nombre.errors?.['pattern']">Formato incorrecto, no puede incluir números y debe tener más de 3 caracteres</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ruc">RUC/RUT *</label>
+            <input
+              name="ruc"
+              class="form-control"
+              formControlName="ruc"
+              placeholder="Ingrese el RUC/RUT *"
+              type="text"
+              pattern="[0-9]{12}"
+            />
+            <div
+              *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="ruc.errors?.['required']">
+                Debe ingresar un RUC/RUT
+              </div>
+              <div *ngIf="ruc.errors?.['pattern']">
+                Formato incorrecto / Debe ingresar 12 números
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label for="email">E-mail *</label>
+            <input
+              name="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Ingrese un e-mail *"
+              type="email"
+            />
+            <div
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="email.errors?.['required']">
+                Debe ingresar un e-mail
+              </div>
+              <div *ngIf="email.errors?.['pattern']">
+                El e-mail debe tener un formato válido
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="estado">Estado </label>
+            <input
+              name="estado"
+              class="form-control"
+              formControlName="estado"
+              placeholder="Estado"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="formulario.invalid"
+      (click)="enviar()"
+    >
+      Registrar
+    </button>
+  </div>
+</form>

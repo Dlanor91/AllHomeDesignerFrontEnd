@@ -1,0 +1,130 @@
+<div>
+  <h1>Monedas</h1>
+</div>
+
+<div class="row">
+  <div class="col-6 d-flex">
+    <button mat-raised-button (click)="agregarMoneda()">Añadir</button>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <mat-form-field>
+      <div>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Buscar..."
+          #input
+        />
+      </div>
+    </mat-form-field>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Símbolo Column -->
+    <ng-container matColumnDef="simbolo">
+      <th mat-header-cell *matHeaderCellDef>Símbolo</th>
+      <td mat-cell *matCellDef="let moneda">{{ moneda.simbolo }}</td>
+    </ng-container>
+
+    <!-- Codigo Column -->
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef>Código</th>
+      <td mat-cell *matCellDef="let moneda">{{ moneda.codigo }}</td>
+    </ng-container>
+
+    <!-- Descripción Column -->
+    <ng-container matColumnDef="descripcion">
+      <th mat-header-cell *matHeaderCellDef>Descripción</th>
+      <td mat-cell *matCellDef="let moneda">{{ moneda.descripcion }}</td>
+    </ng-container>
+
+    <!-- Cotización Column -->
+    <ng-container matColumnDef="cotizacion">
+      <th mat-header-cell *matHeaderCellDef>Cotización</th>
+      <td mat-cell *matCellDef="let moneda">{{ moneda.cotizacion }}</td>
+    </ng-container>
+
+    <!-- Fecha Column -->
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef>Última Modificación</th>
+      <td mat-cell *matCellDef="let moneda">
+        {{ moneda.fecha | date : "dd/MM/y" }}
+      </td>
+    </ng-container>
+
+    <!-- Utiles Column -->
+    <ng-container matColumnDef="utiles">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let moneda" class="text-center">
+        <mat-icon (click)="editar(moneda.codigo)" matTooltip="Editar"
+          >edit</mat-icon
+        >
+
+        <mat-icon
+          (click)="consultaEliminar(moneda.codigo)"
+          matTooltip="Eliminar"
+          >delete</mat-icon
+        >
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!--Filtro de busqueda -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No se encontraron búsquedas para "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10]"
+    aria-label="Seleccione elementos por página"
+  ></mat-paginator>
+</div>
+
+<!--Detalles -->
+<div
+  *ngIf="monedaUpdate != null && detallesMoneda; then detallesCategoriaMostrar"
+></div>
+
+<ng-template #detallesCategoriaMostrar>
+   <div class="mt-4 row">
+    <div class="col-9">
+      <h2>Moneda: {{moneda.descripcion}}</h2>
+    </div>
+    <div class="col-3 text-end">
+      <mat-icon
+        matTooltip="Confirmar Modificación"
+        (click)="modificarMoneda(monedaUpdate)"
+        >check</mat-icon
+      >
+      <mat-icon (click)="cancelar()" matTooltip="Cancelar Modificación"
+        >close</mat-icon
+      >
+    </div>
+  </div>
+
+  <section>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Cotización:</th>
+          <th scope="col">Fecha:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td contenteditable="true">
+            <input type="number" [(ngModel)]="monedaUpdate.cotizacion" required/>
+          </td>
+          <td contenteditable="true">
+            <input type="date" [(ngModel)]="monedaUpdate.fecha" required/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ng-template>

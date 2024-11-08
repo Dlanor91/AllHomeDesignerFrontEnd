@@ -1,0 +1,145 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.grid-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.grid-item img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+
+.price {
+  font-weight: bold;
+}
+
+input {
+  text-align: center;
+}
+
+.grid-item ul li {
+  list-style: none;
+  text-align: center;
+}
+
+.btnAddCarrito {
+  margin: 0 auto;
+  border: 2.5px solid gray;
+}
+
+.btnCompra {
+  padding: 15px;
+  background-color: #85586F;
+  color: #fff;
+  border-color: #D0B8A8;
+  margin: 10px;
+}
+
+.btnCompra:hover {
+  color: #85586F;
+  background-color: #D0B8A8;
+  border-color: #85586F;
+}
+
+.enlace{
+  cursor: pointer;
+}
+
+h1 {
+  padding: 15px 0px;
+  font-size: 40px;
+  font-family: 'DM Serif Text';
+  color: #85586F;
+}
+ h2{
+  font-family: 'DM Serif Text';
+ }
+
+div {
+  font-family: 'Lora', serif;
+  text-align: center;
+}
+
+label{
+  padding: 10px;
+  font-size: 20px;
+}
+
+/* Estilos para resoluciones mayores a 992px */
+@media (min-width: 992px) {
+ label {
+    font-size: 20px;
+  }
+
+  input {
+    font-size: 15px;
+  }
+}
+
+/* Estilos para resoluciones menores a 991px */
+@media (max-width: 991px) {
+  h1 {
+    font-size: 35px;
+  }
+
+  label {
+    font-size: 20px;
+  }
+
+  input {
+    font-size: 13px;
+  }
+
+  mat-icon {
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0 3px 3px 0;
+  }
+
+  .btnCompra{
+    padding: 13px;
+    background-color: #85586F;
+    color: #fff;
+    border-color: #D0B8A8;
+    margin: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 30px;
+  }
+  label {
+    font-size: 16px;
+  }
+
+  input {
+    font-size: 11px;
+    width: 110px;
+  }
+
+  mat-icon {
+    cursor: pointer;
+    font-size: 20px;
+    margin: 0 3px 3px 0;
+  }
+
+  .btnCompra{
+    padding: 12px;
+    background-color: #85586F;
+    color: #fff;
+    border-color: #D0B8A8;
+    margin: 6px;
+    font-size: 12px;
+  }
+}
+
+

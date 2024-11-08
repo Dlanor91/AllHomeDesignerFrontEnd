@@ -1,0 +1,29 @@
+/*
+ * Footer
+ */
+ .blog-footer {
+    padding: 5px 0;
+    color: #727272;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-top: .05rem solid #e5e5e5;
+    font-size: 14px;
+  }
+  .blog-footer p:last-child {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: 20px) and (max-width: 100px){
+    .blog-footer{
+        font-size: 10px;
+    }
+  }
+
+  a:link {
+    text-decoration: none;
+    color: #727272;
+  }
+  a:visited {
+    text-decoration: none;
+    text-decoration-color: #727272;
+  }

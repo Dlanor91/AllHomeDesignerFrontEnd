@@ -1,0 +1,59 @@
+<mat-card class="mt-5">
+  <mat-card-title>{{ filial.nombre }}</mat-card-title>
+  <mat-card-subtitle class="mt-3">Ruc: {{ filial.ruc }}</mat-card-subtitle>
+  <mat-card-content>
+    <p>Fecha de Registro: {{ filial.fechaRegistro | date : "dd/MM/y" }}</p>
+    <p>E-mail: {{ filial.email }}</p>
+    <p>Estado: {{ filial.estado }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button (click)="editar(filial.ruc)">Actualizar</button>
+    <button mat-stroked-button (click)="registrarSucursal(filial.ruc)">Registrar Sucursal</button>
+  </mat-card-actions>
+</mat-card>
+
+<!--Editar -->
+<div *ngIf="editarFilial; then detallesFilialMostrar"></div>
+
+<ng-template #detallesFilialMostrar>
+  <div class="mt-4 row">
+    <div class="col-9">
+      <h2>Filial: {{ filialUpdate.nombre }}</h2>
+    </div>
+    <div class="col-3 text-end">
+      <mat-icon
+        matTooltip="Confirmar Modificación"
+        (click)="modificarFilial(filial)"
+        >check</mat-icon
+      >
+      <mat-icon (click)="cancelar()" matTooltip="Cancelar Modificación"
+        >close</mat-icon
+      >
+    </div>
+  </div>
+
+  <section>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Nombre:</th>
+          <th scope="col">E-Mail:</th>
+          <th scope="col">Estado:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td contenteditable="true">
+            <input type="text" [(ngModel)]="filial.nombre" />
+          </td>
+          <td contenteditable="true">
+            <input type="email" [(ngModel)]="filial.email" />
+          </td>
+          <td contenteditable="true">
+            <input type="text" [(ngModel)]="filial.estado" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ng-template>

@@ -1,0 +1,230 @@
+<div><h1>Registrar Sucursal</h1></div>
+
+<form id="fondo" name="formulario" [formGroup]="formulario" #formDir="ngForm">
+  <div [hidden]="formDir.submitted">
+    <div
+      class="cross-validation form-control"
+      [class.cross-validation-error]="
+        formulario.invalid && (formulario.touched || formulario.dirty)
+      "
+    >
+      <div
+        class="cross-validation"
+        [class.cross-validation-error]="
+          formulario.invalid && (formulario.touched || formulario.dirty)
+        "
+      >
+        <div class="form-group">
+          <label for="codigo" class="tammano">Código</label>
+          <input
+            name="codigo"
+            class="form-control"
+            formControlName="codigo"
+            placeholder="Ingrese el código *"
+            type="text"
+          />
+          <div
+            *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="codigo.errors?.['required']">
+              Debe ingresar un código
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="nombre" class="tammano">Nombre *</label>
+            <input
+              name="nombre"
+              class="form-control"
+              formControlName="nombre"
+              placeholder="Ingrese nombre *"
+              type="text"
+              pattern="[a-zA-Z .]{2,30}"
+            />
+            <div
+              *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="nombre.errors?.['required']">
+                Debe ingresar un nombre
+              </div>
+              <div *ngIf="nombre.errors?.['minlength']">
+                Debe tener al menos 3 caracteres
+              </div>
+              <div *ngIf="nombre.errors?.['pattern']">Formato incorrecto</div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="email" class="tammano">E-mail *</label>
+            <input
+              name="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Ingrese un e-mail *"
+              type="email"
+            />
+            <div
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="email.errors?.['required']">
+                Debe ingresar un e-mail
+              </div>
+              <div *ngIf="email.errors?.['pattern']">
+                El e-mail debe tener un formato valido
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="detalles" class="tammano">Detalles </label>
+          <input
+            name="detalles"
+            class="form-control"
+            formControlName="detalles"
+            placeholder="Detalles"
+            type="text"
+          />
+        </div>
+
+        <div class="form-group col-6">
+          <div class="form-group" id="divTelefono">
+            <label class="col-form-label tammano">Teléfono</label>
+            <input
+              type="string"
+              class="form-control"
+              formControlName="numero"
+              id="telefono"
+              placeholder="Ingrese su número de contacto"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-6">
+          <label class="col-form-label tammano">Dirección</label>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="calle"
+              id="inputDireccion"
+              placeholder="Ingrese la dirección"
+            />
+          </div>
+        </div>
+        <div class="form-group col-6" id="numPuerta">
+          <label class="col-form-label tammano">Número de puerta</label>
+          <div>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="nroPuerta"
+              id="numeroPuerta"
+              placeholder="Número de puerta"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6" id="datosComplementarios">
+          <label class="col-form-label tammano">Datos complementarios</label>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="datos"
+              id="datosComplementarios"
+              placeholder="Apartamento, estudio, entrada por garage"
+            />
+          </div>
+        </div>
+        <div class="form-group col-6" id="datosComplementarios">
+          <label class="col-form-label tammano">Complemento</label>
+          <div>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="complemento"
+              id="/"
+              placeholder="Datos complementarios"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-group row">
+          <label class="col-form-label" tammano>Departamento</label>
+          <p-dropdown
+            [options]="departamentos"
+            [(ngModel)]="seleccionDepartamento"
+            optionLabel="nombre"
+            [filter]="true"
+            filterBy="nombre"
+            [showClear]="true"
+            placeholder="Seleccione departamento"
+            (onChange)="onSelectDepto($event.value)"
+          >
+            <ng-template pTemplate="seleccionDepartamento">
+              <div
+                class="departamentos-item departamento-item-value"
+                *ngIf="seleccionDepartamento.id"
+              >
+                <div>{{ seleccionDepartamento.nombre }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-departamentos pTemplate="item">
+              <div class="departamentos-item">
+                <div>{{ departamentos.nombre }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-form-label" tammano>Localidades</label>
+          <p-dropdown
+            [options]="localidades"
+            [(ngModel)]="seleccionLocalidad"
+            formControlName="idLocalidad"
+            optionLabel="nombre"
+            [filter]="true"
+            filterBy="nombre"
+            [showClear]="true"
+            placeholder="Seleccione localidad"
+          >
+            <ng-template pTemplate="seleccionLocalidad">
+              <div
+                class="localidades-item localidad-item-value"
+                *ngIf="seleccionLocalidad.id"
+              >
+                <div>{{ seleccionLocalidad.nombre }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-localidades pTemplate="item">
+              <div class="departamentos-item">
+                <div>{{ localidades.nombre }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="formulario.invalid"
+      (click)="enviar()"
+    >
+      Registrar
+    </button>
+  </div>
+</form>

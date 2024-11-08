@@ -1,0 +1,73 @@
+<mat-card class="mt-5">
+  <mat-card-title
+    >{{ persona.nombre }} {{ persona.apellido }}</mat-card-title
+  >
+  <mat-card-subtitle class="mt-3">Rol: {{ persona.rol }}</mat-card-subtitle>
+  <mat-card-content>
+    <p>Documento: {{ persona.documento }}</p>
+    <p>Nombre de Usuario: {{ persona.nombreUsuario }}</p>
+    <h3>Datos de Contacto:</h3>
+    <p>E-mail: {{ persona.email }}</p>
+    <p>Teléfono: {{ persona.telefono }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button (click)="editar(persona.documento)">
+      Actualizar
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<!--Editar -->
+<div *ngIf="editarPersona; then detallesTrabajadorMostrar"></div>
+
+<ng-template #detallesTrabajadorMostrar>
+  <div class="mt-4 row">
+    <div class="col-9">
+      <h2>{{ persona.nombre }} {{ persona.apellido }}</h2>
+    </div>
+    <div class="col-3 text-end">
+      <mat-icon
+        matTooltip="Confirmar Modificación"
+        (click)="modificarTrabajador(persona)"
+        >check</mat-icon
+      >
+
+      <mat-icon (click)="cancelar()" matTooltip="Cancelar Modificación"
+        >close</mat-icon
+      >
+    </div>
+  </div>
+
+  <section>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Usuario:</th>
+          <th scope="col">Contraseña:</th>
+          <th scope="col">Email:</th>
+          <th scope="col">Tipo Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td contenteditable="true">
+            <input type="text" [(ngModel)]="persona.nombreUsuario" />
+          </td>
+          <td contenteditable="true">
+            <input type="password" [(ngModel)]="persona.password" />
+          </td>
+          <td contenteditable="true">
+            <input type="email" [(ngModel)]="persona.email" />
+          </td>
+          <td contenteditable="true">
+            <select [(ngModel)]="persona.idTipoUsuario">
+              <option [ngValue]="2">Administrador</option>
+              <option [ngValue]="4">Profesional</option>
+              <option [ngValue]="6">Gerente</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</ng-template>

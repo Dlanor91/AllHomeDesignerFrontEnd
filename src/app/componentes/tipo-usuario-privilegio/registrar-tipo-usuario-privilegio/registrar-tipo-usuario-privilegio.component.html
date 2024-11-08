@@ -1,0 +1,73 @@
+<div>
+  <h1>Registrar Privilegio para un Usuario</h1>
+</div>
+<div>
+  <form id="fondo" name="formulario" [formGroup]="formulario" #formDir="ngForm">
+    <div [hidden]="formDir.submitted">
+      <div class="cross-validation form-control">
+        <div class="form-group">
+          <div class="form-group">
+            <div class="form-group row">
+              <label class="col-form-label">Tipos de Usuarios</label>
+              <p-dropdown
+                [options]="tiposDeUsuarios"
+                [(ngModel)]="seleccionTipoUsuario"
+                optionLabel="rol"
+                [filter]="true"
+                filterBy="rol"
+                [showClear]="true"
+                placeholder="Seleccione Tipo de Usuario"
+                formControlName="idTipoUsuario"
+              >
+                <ng-template pTemplate="seleccionTipoUsuario">
+                  <div
+                    class="tiposDeUsuarios-item tiposDeUsuarios-item-value"
+                    *ngIf="seleccionTipoUsuario.id"
+                  >
+                    <div>{{ seleccionTipoUsuario.rol }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-tiposDeUsuarios pTemplate="item">
+                  <div class="tiposDeUsuarios-item">
+                    <div>{{ tiposDeUsuarios.rol }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-form-label">Tipos de Privilegios</label>
+              <p-dropdown
+                [options]="tiposDePrivilegio"
+                [(ngModel)]="seleccionPrivilegio"
+                formControlName="idPrivilegio"
+                optionLabel="tipo"
+                [filter]="true"
+                filterBy="tipo"
+                [showClear]="true"
+                placeholder="Seleccione Tipo de Privilegio"
+              >
+                <ng-template pTemplate="seleccionPrivilegio">
+                  <div
+                    class="tiposDePrivilegio-item tiposDePrivilegio-item-value"
+                    *ngIf="seleccionPrivilegio.id"
+                  >
+                    <div>{{ seleccionPrivilegio.tipo }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-tiposDePrivilegios pTemplate="item">
+                  <div class="departamentos-item">
+                    <div>{{ tiposDePrivilegios.tipo }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="enviar()">
+        Registrar
+      </button>
+    </div>
+  </form>
+</div>

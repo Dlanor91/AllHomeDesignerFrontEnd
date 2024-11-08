@@ -1,0 +1,451 @@
+<div>
+  <h1>Registrar Producto</h1>
+</div>
+
+<form id="fondo" name="formulario" [formGroup]="formulario" #formDir="ngForm">
+  <div [hidden]="formDir.submitted">
+    <div
+      class="cross-validation form-control"
+      [class.cross-validation-error]="
+        formulario.invalid && (formulario.touched || formulario.dirty)
+      "
+    >
+      <div
+        class="cross-validation"
+        [class.cross-validation-error]="
+          formulario.invalid && (formulario.touched || formulario.dirty)
+        "
+      >
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="codigo">Codigo *</label>
+
+            <input
+              name="codigo"
+              class="form-control"
+              formControlName="codigo"
+              placeholder="Ingrese un Código*"
+              type="text"
+              pattern="^[a-zA-Z0-9]{4,}$"
+            />
+            <div
+              *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="codigo.errors?.['required']">
+                Debe ingresar un código
+              </div>
+              <div *ngIf="codigo.errors?.['pattern']">
+                Debe tener una longitud mínina de 4 caracteres
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="nombre">Nombre *</label>
+            <input
+              name="nombre"
+              class="form-control"
+              formControlName="nombre"
+              placeholder="Ingrese nombre *"
+              type="text"
+              pattern="[a-zA-Z ]{2,30}"
+            />
+            <div
+              *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="nombre.errors?.['required']">
+                Debe ingresar un nombre
+              </div>
+              <div *ngIf="nombre.errors?.['minlength']">
+                Debe tener al menos 3 caracteres
+              </div>
+              <div *ngIf="nombre.errors?.['pattern']">Formato incorrecto</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="descripcion">Descripción *</label>
+            <input
+              name="descripcion"
+              class="form-control"
+              formControlName="descripcion"
+              placeholder="Ingrese la descripción *"
+              type="text"
+              pattern="[a-zA-Z .]{9,200}"
+            />
+            <div
+              *ngIf="
+                descripcion.invalid &&
+                (descripcion.dirty || descripcion.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="descripcion.errors?.['required']">
+                Debe ingresar una descripción
+              </div>
+              <div *ngIf="descripcion.errors?.['minlength']">
+                Debe tener al menos 10 caracteres
+              </div>
+              <div *ngIf="descripcion.errors?.['pattern']">
+                Formato incorrecto
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="largo">Largo *</label>
+            <input
+              name="largo *"
+              class="form-control"
+              formControlName="largo"
+              placeholder="Ingrese el largo *"
+              type="number"
+            />
+            <div
+              *ngIf="largo.invalid && (largo.dirty || largo.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="largo.errors?.['required']">
+                Debe ingresar un largo
+              </div>
+              <div *ngIf="largo.errors?.['min']">
+                El largo no puede ser ni negativo ni 0
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="ancho">Ancho *</label>
+            <input
+              name="ancho"
+              class="form-control"
+              formControlName="ancho"
+              placeholder="Ingrese el ancho *"
+              type="number"
+            />
+            <div
+              *ngIf="ancho.invalid && (ancho.dirty || ancho.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="ancho.errors?.['required']">
+                Debe ingresar un ancho
+              </div>
+              <div *ngIf="ancho.errors?.['min']">
+                El ancho no puede ser ni negativo ni 0
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="profundidad">Profundidad</label>
+            <input
+              name="profundidad *"
+              class="form-control"
+              formControlName="profundidad"
+              placeholder="Ingrese la profundidad *"
+              type="number"
+            />
+            <div
+              *ngIf="
+                profundidad.invalid &&
+                (profundidad.dirty || profundidad.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="profundidad.errors?.['min']">
+                La profundidad no puede tener valores negativos
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="stock">Stock *</label>
+            <input
+              name="stock"
+              class="form-control"
+              formControlName="stock"
+              placeholder="Ingrese un stock *"
+              type="number"
+            />
+            <div
+              *ngIf="stock.invalid && (stock.dirty || stock.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="stock.errors?.['required']">
+                Debe ingresar un stock
+              </div>
+              <div *ngIf="stock.errors?.['min']">
+                El stock no puede ser ni negativo ni 0
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="presentacion">Presentación *</label>
+            <input
+              name="presentacion"
+              class="form-control"
+              formControlName="presentacion"
+              placeholder="Ingrese la presentación *"
+              type="text"
+              pattern="[a-zA-Z .]{9,30}"
+            />
+            <div
+              *ngIf="
+                presentacion.invalid &&
+                (presentacion.dirty || presentacion.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="presentacion.errors?.['required']">
+                Debe ingresar la presentación del producto
+              </div>
+              <div *ngIf="presentacion.errors?.['minlength']">
+                Debe tener al menos 10 caracteres
+              </div>
+              <div *ngIf="presentacion.errors?.['pattern']">
+                Formato incorrecto
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-6">
+            <label for="rendimiento">Rendimiento</label>
+            <input
+              name="rendimiento *"
+              class="form-control"
+              formControlName="rendimiento"
+              placeholder="Ingrese el rendimiento *"
+              type="number"
+            />
+          </div>
+          <div
+            *ngIf="
+              rendimiento.invalid && (rendimiento.dirty || rendimiento.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="rendimiento.errors?.['min']">
+              El rendimiento no puede tener valores negativos
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <label for="textura">Textura</label>
+            <input
+              name="textura"
+              class="form-control"
+              formControlName="textura"
+              placeholder="Ingrese la textura "
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-12">
+            <label for="sugerencias">Sugerencias</label>
+            <input
+              name="sugerencias"
+              class="form-control"
+              formControlName="sugerencias"
+              placeholder="Ingrese las sugerencias del producto "
+              type="text"
+              pattern="[a-zA-Z .]"
+            />
+          </div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="form-group col-6">
+            <div class="form-group row">
+              <label class="col-form-label">Proveedores *</label>
+              <p-dropdown
+                [options]="proveedores"
+                [(ngModel)]="seleccionProveedor"
+                formControlName="rucProveedor"
+                optionLabel="nombre"
+                [filter]="true"
+                filterBy="nombre"
+                [showClear]="true"
+                placeholder="Seleccione un tipo proveedor"
+                class="small-dropdown"
+              >
+                <ng-template pTemplate="seleccionProveedor">
+                  <div
+                    class="departamentos-item departamento-item-value"
+                    *ngIf="seleccionProveedor.ruc"
+                  >
+                    <div>{{ seleccionProveedor.nombre }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-proveedores pTemplate="item">
+                  <div class="departamentos-item">
+                    <div>{{ proveedores.nombre }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+          </div>
+
+          <div class="form-group col-6">
+            <div class="form-group row">
+              <label class="col-form-label">Categorías *</label>
+
+              <p-dropdown
+                [options]="categorias"
+                [(ngModel)]="seleccionCategoria"
+                formControlName="idCategoria"
+                optionLabel="nombre"
+                [filter]="true"
+                filterBy="nombre"
+                [showClear]="true"
+                placeholder="Seleccione una Categoría"
+                class="small-dropdown"
+              >
+                <ng-template pTemplate="seleccionCategoria">
+                  <div
+                    class="departamentos-item departamento-item-value"
+                    *ngIf="seleccionCategoria.id"
+                  >
+                    <div>{{ seleccionCategoria.nombre }}</div>
+                  </div>
+                </ng-template>
+                <ng-template let-categorias pTemplate="item">
+                  <div class="departamentos-item">
+                    <div>{{ categorias.nombre }}</div>
+                  </div>
+                </ng-template>
+              </p-dropdown>
+            </div>
+          </div>
+        </div>
+
+        <h2>Precio Producto</h2>
+        <div class="row">
+          <div class="form-group col-4">
+            <label for="precioLista">Precio Lista *</label>
+            <input
+              name="precioLista *"
+              class="form-control"
+              formControlName="precioLista"
+              placeholder="Ingrese el precio lista del producto *"
+              type="number"
+            />
+            <div
+              *ngIf="
+                precioLista.invalid &&
+                (precioLista.dirty || precioLista.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="precioLista.errors?.['required']">
+                Debe ingresar un Precio de Lista
+              </div>
+              <div *ngIf="precioLista.errors?.['min']">
+                El precio de lista no puede ser negativo ni 0
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-4">
+            <label for="precioVenta">Precio de Venta *</label>
+            <input
+              name="precioVenta"
+              class="form-control"
+              formControlName="precioVenta"
+              placeholder="Ingrese el Precio de Venta *"
+              type="number"
+            />
+            <div
+              *ngIf="
+                precioVenta.invalid &&
+                (precioVenta.dirty || precioVenta.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="precioVenta.errors?.['required']">
+                Debe ingresar el Precio de Venta
+              </div>
+              <div *ngIf="precioVenta.errors?.['min']">
+                El precio de venta no puede ser negativo ni 0
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-4">
+            <label for="iva">IVA *</label>
+            <input
+              name="iva"
+              class="form-control"
+              formControlName="iva"
+              placeholder="Ingrese un IVA *"
+              type="number"
+            />
+            <div
+              *ngIf="iva.invalid && (iva.dirty || iva.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="iva.errors?.['required']">Debe ingresar el IVA</div>
+              <div *ngIf="iva.errors?.['min']">
+                El iva no puede ser negativo
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group row">
+            <label class="col-form-label">Moneda *</label>
+            <p-dropdown
+              [options]="monedas"
+              [(ngModel)]="seleccionMoneda"
+              formControlName="codigoMoneda"
+              optionLabel="simbolo"
+              [filter]="true"
+              filterBy="simbolo"
+              [showClear]="true"
+              placeholder="Seleccione un tipo de Moneda"
+              class="small-dropdown"
+            >
+              <ng-template pTemplate="seleccionMoneda">
+                <div
+                  class="departamentos-item departamentos-item-value"
+                  *ngIf="seleccionMoneda.codigo"
+                >
+                  <div>{{ seleccionMoneda.simbolo }}</div>
+                </div>
+              </ng-template>
+              <ng-template let-monedas pTemplate="item">
+                <div class="departamentos-item">
+                  <div>{{ monedas.simbolo }}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="formulario.invalid"
+      (click)="registrar()"
+    >
+      Registrar
+    </button>
+  </div>
+</form>

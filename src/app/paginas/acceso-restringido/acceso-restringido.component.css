@@ -1,0 +1,27 @@
+.btn-primary {
+    padding: 25px;
+    --bs-btn-color: #fff;
+    --bs-btn-bg: #85586F;
+    --bs-btn-border-color: #D0B8A8;
+    --bs-btn-hover-color: #85586F;
+    --bs-btn-hover-bg: #D0B8A8;
+    --bs-btn-hover-border-color: #85586F;
+    transform: translate(-50%, -50%);
+
+    position: absolute;
+    top: 30%;
+    left: 50%;
+  }
+  
+  .btn :focus {
+    background: #D0B8A8;
+    border-color: #D0B8A8;
+  }
+
+  h1{
+    margin-top: 100px;
+    font-family: 'DM Serif Text', serif;
+    text-align: center;
+    color: #85586F;
+  }
+  

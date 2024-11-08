@@ -1,0 +1,75 @@
+<div><h1>Sucursales</h1></div>
+
+<div class="row">
+  <div class="col-6 d-flex" >
+    <button *ngIf="rol !== 'Superadmin'" mat-raised-button (click)="agregarSucursal()">Añadir</button>
+  </div>
+  <div class="col-6 d-flex justify-content-end">
+    <mat-form-field>
+      <div>
+        <input
+          matInput
+          (keyup)="applyFilter($event)"
+          placeholder="Buscar..."
+          #input
+        />
+      </div>
+    </mat-form-field>
+  </div>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Codigo Column -->
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef>Código</th>
+      <td mat-cell *matCellDef="let sucursal">{{ sucursal.codigo }}</td>
+    </ng-container>
+
+    <!-- Nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
+      <td mat-cell *matCellDef="let sucursal">{{ sucursal.nombre }}</td>
+    </ng-container>
+
+    <!-- Detalles Column -->
+    <ng-container matColumnDef="detalles">
+      <th mat-header-cell *matHeaderCellDef>Detalles</th>
+      <td mat-cell *matCellDef="let sucursal">{{ sucursal.detalles }}</td>
+    </ng-container>
+
+    <!-- Utiles Column -->
+    <ng-container matColumnDef="utiles">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let sucursal" class="text-center">
+        <mat-icon matTooltip="Detalles" (click)="detalle(sucursal.codigo)"
+          >info</mat-icon
+        >
+
+        <mat-icon
+          matTooltip="Eliminar"
+          (click)="consultaElimininarSucursal(sucursal.codigo)"
+          >delete</mat-icon
+        >
+
+        <mat-icon *ngIf="rol === 'Gerente'"
+          (click)="consultaElimininarTrabajadores(sucursal.codigo)"
+          matTooltip="Eliminar trabajadores asociados"
+          >delete_sweep</mat-icon
+        >
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <!--Filtro de busqueda -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">
+        No se encontraron búsquedas para "{{ input.value }}"
+      </td>
+    </tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10]"
+    aria-label="Seleccione elementos por página"
+  ></mat-paginator>
+</div>

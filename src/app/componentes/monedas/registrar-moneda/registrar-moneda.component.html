@@ -1,0 +1,117 @@
+<div>
+  <h1>Registro de Moneda</h1>
+</div>
+
+<form id="fondo" name="formulario" [formGroup]="formulario" #formDir="ngForm">
+  <div [hidden]="formDir.submitted">
+    <div
+      class="cross-validation form-control"
+      [class.cross-validation-error]="
+        formulario.invalid && (formulario.touched || formulario.dirty)
+      "
+    >
+      <div
+        class="cross-validation"
+        [class.cross-validation-error]="
+          formulario.invalid && (formulario.touched || formulario.dirty)
+        "
+      >
+        <div class="row">
+          <div class="form-group">
+            <label for="codigo">Código *</label>
+            <input
+              name="codigo"
+              class="form-control"
+              formControlName="codigo"
+              placeholder="Ingrese código *"
+              type="text"
+              pattern="[a-zA-Z .]{2,30}"
+            />
+            <div
+              *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="codigo.errors?.['required']">
+                Debe ingresar un código
+              </div>
+              <div *ngIf="codigo.errors?.['minlength']">
+                Debe tener al menos 2 caracteres
+              </div>
+              <div *ngIf="codigo.errors?.['pattern']">Formato incorrecto</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Descripción *</label>
+            <input
+              name="descripcion"
+              class="form-control"
+              formControlName="descripcion"
+              placeholder="Ingrese una descripción *"
+              type="text"
+            />
+            <div
+              *ngIf="
+                descripcion.invalid &&
+                (descripcion.dirty || descripcion.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="descripcion.errors?.['required']">
+                Debe ingresar una descripción
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cotizacion">Cotización *</label>
+            <input
+              name="cotizacion"
+              class="form-control"
+              formControlName="cotizacion"
+              placeholder="Ingrese cotización *"
+              type="number"
+            />
+            <div
+              *ngIf="
+                cotizacion.invalid && (cotizacion.dirty || cotizacion.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="cotizacion.errors?.['required']">
+                Debe ingresar una cotización
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="simbolo">Símbolo *</label>
+            <input
+              name="simbolo"
+              class="form-control"
+              formControlName="simbolo"
+              placeholder="Ingrese el símbolo *"
+              type="text"
+            />
+            <div
+              *ngIf="simbolo.invalid && (simbolo.dirty || simbolo.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="simbolo.errors?.['required']">
+                Debe ingresar un símbolo
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [disabled]="formulario.invalid"
+      (click)="enviar()"
+    >
+      Registrar
+    </button>
+  </div>
+</form>

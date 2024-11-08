@@ -1,0 +1,49 @@
+<div><h1>Clientes</h1></div>
+<div class="row">
+  <div class="mx-3 col-2 form-check form-check-inline">
+    <label class="tamannoRadio form-check-label">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="cliente"
+        value="Persona"
+        [(ngModel)]="tipoCliente"
+        matTooltip="Seleccionar"
+      />
+      Persona
+    </label>
+  </div>
+  <div class="col-2 form-check-inline">
+    <label class="tamannoRadio form-check-label">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="cliente"
+        value="Empresa"
+        [(ngModel)]="tipoCliente"
+        matTooltip="Seleccionar"
+      />
+      Empresas
+    </label>
+  </div>
+</div>
+<hr />
+
+<!-- Template que evalua si se seleccionó un tipo de cliente -->
+<div *ngIf="tipoCliente; then tipoClienteSeleccionado"></div>
+
+<ng-template #tipoClienteSeleccionado>
+  <div *ngIf="tipoCliente == 'Persona'; then tipoPersona; else tipoEmpresa"></div>
+</ng-template>
+
+<!-- Templates que evalua si se seleccionó una persona o una empresa -->
+
+<ng-template #tipoPersona>
+  <app-listar-personas></app-listar-personas>
+</ng-template>
+
+<ng-template #tipoEmpresa>
+  <app-listar-empresas></app-listar-empresas>
+</ng-template>
+
+<flotanteModelo></flotanteModelo>

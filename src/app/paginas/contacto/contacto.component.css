@@ -1,0 +1,138 @@
+section#contact {
+  background-color: #85586f;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: 10px;
+}
+section#contact .section-heading {
+  color: #fff;
+}
+section#contact form#contactForm .form-group {
+  margin-bottom: 1.5rem;
+}
+section#contact form#contactForm .form-group input,
+section#contact form#contactForm .form-group textarea {
+  padding: 1.25rem;
+}
+section#contact form#contactForm .form-group input.form-control {
+  height: auto;
+}
+section#contact form#contactForm .form-group-textarea {
+  height: 100%;
+}
+section#contact form#contactForm .form-group-textarea textarea {
+  height: 100%;
+  min-height: 10rem;
+}
+section#contact form#contactForm p.help-block {
+  margin: 0;
+}
+section#contact form#contactForm .form-control:focus {
+  border-color: #ffc800;
+  box-shadow: none;
+}
+
+.page-section {
+  padding: 15px;
+  margin: 20px;
+}
+
+.centrar-verticalmente {
+  vertical-align: middle;
+}
+
+.containerTabla {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  font-family: "Arial";
+  border-collapse: separate;
+  border-spacing: 11px;
+  border: 0;
+}
+
+th {
+  font-size: 22px;
+}
+
+td {
+  font-size: 19px;
+}
+
+@media (min-width: 992px) {
+  .btn-primary {
+    padding: 25px;
+    font-size: 18px;
+  }
+
+  th {
+    font-size: 20px;
+  }
+
+  td {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 768px) {
+  .btn-primary {
+    padding: 20px;
+    font-size: 15px;
+  }
+
+  th {
+    font-size: 18px;
+  }
+  td {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .btn-primary {
+    padding: 18px;
+    font-size: 13px;
+  }
+
+  th {
+    font-size: 16px;
+  }
+  td {
+    font-size: 12px;
+  }
+}
+
+.btn {
+  top: -100%;
+  right: 0;
+  width: 200px;
+  height: 100%;
+  background: #d0b8a8;
+  border-color: #d0b8a8;
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: 0.25s;
+  color: white;
+  padding: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.btn :disabled {
+  background: #d0b8a8;
+  border-color: #d0b8a8;
+}
+
+.form-group {
+  align-items: center;
+  text-align: center;
+}
+
+#fondo {
+  background-color: #85586f;
+}
+
+#textArea {
+  margin-bottom: 20px;
+}
